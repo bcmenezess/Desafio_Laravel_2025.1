@@ -17,6 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('address');
+            $table->string('telephone')->unique();
+            $table->date('date_birth');
+            $table->string('cpf')->unique();
+            $table->decimal('balance',10,2);
+            $table->string('photo')->nullable();
+            $table->foreignId('admin_id')->constrained()->onDelete('no action');
             $table->rememberToken();
             $table->timestamps();
         });
