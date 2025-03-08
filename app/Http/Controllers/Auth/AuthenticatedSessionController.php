@@ -18,12 +18,6 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        if(Auth::guard('admin')->check()){
-            return to_route('dashboard');
-        }
-        if(Auth::guard('web')->check()){
-            return to_route('landing-page');
-        }
         return view('auth.login');
     }
 
@@ -54,10 +48,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        if(Auth::guard('web')->check()){
+        if(isUser()){
             Auth::guard('web')->logout();
         }
-        else if(Auth::guard('admin')->check()){
+        else if(isAdmin()){
             Auth::guard('admin')->logout();
         }
 
