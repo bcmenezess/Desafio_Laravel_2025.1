@@ -22,7 +22,7 @@ class ProductFactory extends Factory
             'price' => fake()->randomNumber(4,false),
             'quantity' => fake()->randomNumber(2,false),
             'description' => fake()->text(),
-            'category' => fake()->word(),
+            'category' => fake()->randomDigit(),
             'user_id' => User::inRandomOrder()->value('id')
         ];
     }
