@@ -52,7 +52,7 @@
               <p>{{$product->category}}</p>
                 <div class="card-actions justify-end">
                     @if(isUser())
-                    <button class="btn btn-outline btn-success">Comprar</button>
+                    <a class="btn btn-outline btn-success" href="item/{{$product->id}}">Comprar</a>
                     @endif
                 </div>
             </div>
