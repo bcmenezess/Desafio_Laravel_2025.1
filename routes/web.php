@@ -20,13 +20,14 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
 Route::prefix('user')->middleware(UserMiddleware::class)->group(function (){
 });
 
-Route::get('/landing-page',[ProductController::class,'index'])->name('landing-page');
 //Route::post('/landing-page', [ProductController::class, 'index']);
 
 Route::middleware(AuthOrAdminMiddleware::class)->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/landing-page',[ProductController::class,'index'])->name('landing-page');
 });
 
 require __DIR__.'/auth.php';
