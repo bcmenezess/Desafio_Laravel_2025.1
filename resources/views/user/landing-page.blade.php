@@ -16,21 +16,22 @@
         </div>
       </div>
 
-      <label class="input flex mt-10 mb-2 justify-self-center">
-        <form action="{{route('landing-page')}}" method="get">
+      <div class="flex justify-center mt-10 mb-10">
+        <form action="{{ route('landing-page') }}" method="get" class="flex flex-wrap gap-4 items-center w-full max-w-2xl">
             @csrf
-            <input type="search" class="grow" name="busca" placeholder="Buscar por..." value="{{ request('busca') }}" />
 
-            <select name="category" class="text-black">
+            <input type="search" class="grow input input-md w-full md:w-auto" name="busca" placeholder="Buscar por..." value="{{ request('busca') }}" />
+
+            <select name="category" class="select select-md w-full md:w-auto">
                 <option value="">Todas as Categorias</option>
                 @foreach($categories as $cat)
                     <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>{{ $cat }}</option>
                 @endforeach
             </select>
 
-            <button class="btn btn-sm btn-info" type="submit">Buscar</button>
+            <button class="btn btn-md btn-info w-full md:w-auto" type="submit">Buscar</button>
         </form>
-      </label>
+    </div>
 
 
       <div class="flex flex-wrap justify-center">
