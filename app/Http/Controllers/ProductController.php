@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -47,6 +48,12 @@ class ProductController extends Controller
 
         return view('user.landing-page',
         compact('products','user', 'message', 'categories'));
+    }
+
+    public function visuProdutos($id){
+        $product = Product::findOrFail($id);
+        $seller = User::find($product->user_id);
+        return view('user.item-view',compact('product','seller'));
     }
 
     /**
