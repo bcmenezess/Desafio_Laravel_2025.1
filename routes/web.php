@@ -15,6 +15,7 @@ Route::get('/', function () {
 
 Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard');
+    Route::get('/users-table',[UserController::class,'index'])->name('users-table');
 });
 
 Route::prefix('user')->middleware(UserMiddleware::class)->group(function (){
