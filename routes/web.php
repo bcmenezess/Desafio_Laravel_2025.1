@@ -16,6 +16,9 @@ Route::get('/', function () {
 Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard');
     Route::get('/users-table',[UserController::class,'index'])->name('users-table');
+    Route::get('/users-table/add',[UserController::class,'create'])->name('add-user');
+    Route::post('/users-table/add',[UserController::class,'store']);
+
 });
 
 Route::prefix('user')->middleware(UserMiddleware::class)->group(function (){
