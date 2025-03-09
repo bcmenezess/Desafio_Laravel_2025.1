@@ -24,7 +24,9 @@
                     <p>{{$product->description}}</p>
                 </div>
                 <div class="card-actions justify-end">
-                    <button class="btn btn-success">Comprar</button>
+                    @if (isUser())
+                        <button class="btn btn-success">Comprar</button>
+                    @endif
                 </div>
             </div>
         </div>
