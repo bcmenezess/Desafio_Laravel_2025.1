@@ -18,7 +18,7 @@
                   <th>Telefone</th>
                   <th>Ações</th>
                   <th>
-                    <button class="btn btn-success text-lg font-black">+</button>
+                    <a href="users-table/add" class="btn btn-success text-lg font-black">+</a>
                   </th>
                 </tr>
               </thead>
