@@ -24,8 +24,8 @@ class ProductController extends Controller
             $products = Product::where('user_id','!=',$user->id);
         }
         else {
-            $products = Product::where('name', 'like', $query)
-                ->orWhere('description', 'like', $query)
+            $products = Product::where('name', 'like', "%{$query}%")
+                ->orWhere('description', 'like', "%{$query}%")
                 ->where('user_id','!=',$user->id);
         }
 
