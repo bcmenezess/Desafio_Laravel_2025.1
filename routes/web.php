@@ -28,6 +28,7 @@ Route::middleware(AuthOrAdminMiddleware::class)->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/landing-page',[ProductController::class,'index'])->name('landing-page');
+    Route::get('/item/{id}',[ProductController::class,'visuProdutos'])->name('item-view');
 });
 
 require __DIR__.'/auth.php';
