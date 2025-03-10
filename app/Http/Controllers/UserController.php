@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -99,5 +100,22 @@ class UserController extends Controller
     public function view($id){
         $user = User::findOrFail($id);
         return view('admin.view-user',compact('user'));
+    }
+
+    public function deleteView($id){
+        $user = User::find($id);
+        return view('admin.delete-user',compact('user'));
+    }
+
+    public function delete($id){
+        $user = User::find($id);
+
+        if(usuarioLogado() == $user){
+            Auth::logout();
+        }
+
+        $user->delete();
+
+        return to_route('users-table');
     }
 }
