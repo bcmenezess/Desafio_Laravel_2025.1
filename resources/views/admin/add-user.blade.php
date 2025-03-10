@@ -1,6 +1,15 @@
 <x-app-layout>
 
-    <div class="flex justify-center items-center mt-10">
+    <div class="flex flex-col gap-4 justify-center items-center mt-10">
+        @if ($errors->any())
+        <div class="bg-red-500 text-white p-4 rounded-md mb-4">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <div class="card bg-neutral text-neutral-content w-96 bg-gray-900">
             <div class="card-body items-center text-center">
                 <h2>Criar Usuário</h2>
