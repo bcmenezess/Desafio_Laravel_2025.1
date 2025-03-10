@@ -110,6 +110,10 @@ class UserController extends Controller
     public function delete($id){
         $user = User::find($id);
 
+        if(isset($user->photo)){
+            Storage::disk('public')->delete($user->photo);
+        }
+
         if(usuarioLogado() == $user){
             Auth::logout();
         }
