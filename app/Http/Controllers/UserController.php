@@ -95,4 +95,9 @@ class UserController extends Controller
 
         return redirect()->back();
     }
+
+    public function view($id){
+        $user = User::findOrFail($id);
+        return view('admin.view-user',compact('user'));
+    }
 }
