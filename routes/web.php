@@ -21,7 +21,8 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::get('/users-table/edit/{id}',[UserController::class,'editView']);
     Route::put('/users-table/edit/{id}',[UserController::class,'edit'])->name('edit-user');
     Route::get('/users-table/view/{id}',[UserController::class,'view'])->name('view-user');
-
+    Route::get('/users-table/delete/{id}',[UserController::class,'deleteView'])->name('delete-user');
+    Route::delete('/users-table/delete/{id}',[UserController::class,'delete']);
 });
 
 Route::prefix('user')->middleware(UserMiddleware::class)->group(function (){
