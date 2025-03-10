@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PagSeguroController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -26,6 +27,11 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
 });
 
 Route::prefix('user')->middleware(UserMiddleware::class)->group(function (){
+    Route::post('/checkout',[PagSeguroController::class,'createCheckout'])->name('checkout');
+    Route::get('/erro-checkout',function(){
+        return view('user.erro-checkout');
+    })->name('erro-checkout');
+
 });
 
 //Route::post('/landing-page', [ProductController::class, 'index']);
