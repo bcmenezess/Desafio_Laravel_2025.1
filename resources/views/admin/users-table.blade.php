@@ -34,7 +34,7 @@
                     <td class="flex gap-2">
                         <a href="users-table/view/{{$user->id}}" class="btn btn-soft bg-gray-200 text-black">Ver</a>
                         <a href="users-table/edit/{{$user->id}}" class="btn btn-warning">Editar</a>
-                        <button class="btn btn-error">Deletar</button>
+                        <a href="users-table/delete/{{$user->id}}" class="btn btn-error">Deletar</a>
                     </td>
                     </tr>
                 @endforeach
