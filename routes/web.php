@@ -18,6 +18,8 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::get('/users-table',[UserController::class,'index'])->name('users-table');
     Route::get('/users-table/add',[UserController::class,'create'])->name('add-user');
     Route::post('/users-table/add',[UserController::class,'store']);
+    Route::get('/users-table/edit/{id}',[UserController::class,'editView']);
+    Route::put('/users-table/edit/{id}',[UserController::class,'edit'])->name('edit-user');
 
 });
 
