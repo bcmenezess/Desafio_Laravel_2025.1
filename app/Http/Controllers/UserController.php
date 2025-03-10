@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -24,33 +27,72 @@ class UserController extends Controller
     }
 
     public function store(StoreUserRequest $request)
-{
-    $validatedData = $request->validated();
-    $logado = usuarioLogado();
+    {
+        $validatedData = $request->validated();
+        $logado = usuarioLogado();
 
-    if ($request->hasFile('photo')) {
-        $imagePath = $request->file('photo')->store('profiles', 'public');
-    } else {
-        $imagePath = null;
+        if ($request->hasFile('photo')) {
+            $imagePath = $request->file('photo')->store('profiles', 'public');
+        } else {
+            $imagePath = null;
+        }
+
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'cpf' => $validatedData['cpf'],
+            'address' => $validatedData['address'],
+            'date_birth' => $validatedData['date_birth'],
+            'telephone' => $validatedData['telephone'],
+            'password' => Hash::make($validatedData['password']),
+            'photo' => $imagePath,
+            'admin_id' => $logado->id,
+            'balance' => 0
+        ]);
+
+        if($user){
+            return redirect()->route('users-table');
+        }
+
+        return redirect()->back();
     }
 
-    $user = User::create([
-        'name' => $validatedData['name'],
-        'email' => $validatedData['email'],
-        'cpf' => $validatedData['cpf'],
-        'address' => $validatedData['address'],
-        'date_birth' => $validatedData['date_birth'],
-        'telephone' => $validatedData['telephone'],
-        'password' => bcrypt($validatedData['password']),
-        'photo' => $imagePath,
-        'admin_id' => $logado->id,
-        'balance' => 0
-    ]);
-
-    if($user){
-        return redirect()->route('users-table')->with('success', 'Usuário cadastrado com sucesso!');
+    public function editView($id){
+        $user = User::findOrFail($id);
+        return view('admin.edit-user',compact('user'));
     }
 
-    return redirect()->back()->with('error', 'Erro ao cadastrar usuário.');
-}
+    public function edit(UpdateUserRequest $request, $id){
+        $validatedData = $request->validated();
+        $user = User::find($id);
+
+        if ($request->hasFile('photo')) {
+            if ($user->photo) {
+                Storage::disk('public')->delete($user->photo);
+            }
+
+            $imagePath = $request->file('photo')->store('profiles', 'public');
+
+            $user->photo = $imagePath;
+        }
+
+        if($request->filled('password')){
+            $user->password = Hash::make($request->password);
+        }
+
+        $user = $user->update([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'cpf' => $validatedData['cpf'],
+            'address' => $validatedData['address'],
+            'date_birth' => $validatedData['date_birth'],
+            'telephone' => $validatedData['telephone'],
+        ]);
+
+        if($user){
+            return redirect()->route('users-table');
+        }
+
+        return redirect()->back();
+    }
 }
