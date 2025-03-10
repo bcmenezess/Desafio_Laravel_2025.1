@@ -32,7 +32,7 @@
                     <td>{{$user->cpf}}</td>
                     <td>{{$user->telephone}}</td>
                     <td class="flex gap-2">
-                        <button class="btn btn-soft bg-gray-200 text-black">Ver</button>
+                        <a href="users-table/view/{{$user->id}}" class="btn btn-soft bg-gray-200 text-black">Ver</a>
                         <a href="users-table/edit/{{$user->id}}" class="btn btn-warning">Editar</a>
                         <button class="btn btn-error">Deletar</button>
                     </td>
