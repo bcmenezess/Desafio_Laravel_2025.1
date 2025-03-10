@@ -37,7 +37,22 @@ class StoreUserRequest extends FormRequest
     public function messages(): array
     {
         return [
-            //
+            'name.required' => 'O campo nome é obrigatório.',
+            'email.required' => 'O campo email é obrigatório.',
+            'email.email' => 'Informe um email válido.',
+            'email.unique' => 'Este email já está em uso.',
+            'cpf.required' => 'O CPF é obrigatório.',
+            'cpf.size' => 'O CPF deve ter exatamente 11 dígitos.',
+            'cpf.unique' => 'Este CPF já está cadastrado.',
+            'address.required' => 'O endereço é obrigatório.',
+            'date_birth.required' => 'A data de nascimento é obrigatória.',
+            'date_birth.before' => 'A data de nascimento deve ser anterior a hoje.',
+            'telephone.required' => 'O telefone é obrigatório.',
+            'password.required' => 'A senha é obrigatória.',
+            'password.min' => 'A senha deve ter pelo menos 6 caracteres.',
+            'password.confirmed' => 'As senhas não coincidem.',
+            'photo.image' => 'O arquivo deve ser uma imagem.',
+            'photo.max' => 'A foto deve ter no máximo 2MB.',
         ];
     }
 }
