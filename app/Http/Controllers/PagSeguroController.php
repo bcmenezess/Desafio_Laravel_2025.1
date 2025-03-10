@@ -46,6 +46,8 @@ class PagSeguroController extends Controller
                 //'status' => 1
             ]);
 
+            //TO DO VERIFICAR SALDO DO COMPRADOR
+
             $seller = User::find($product['user_id']);
             $seller->balance += $product['price'] * $quantity_input;
             $seller->update(['balance'=>$seller->balance]);
