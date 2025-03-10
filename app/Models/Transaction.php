@@ -10,7 +10,9 @@ class Transaction extends Model
     protected $fillable = [
         'date',
         'quantity',
-        'total_price'
+        'total_price',
+        'buyer_id',
+        'product_id'
     ];
     /** @use HasFactory<\Database\Factories\TransactionFactory> */
     use HasFactory;
