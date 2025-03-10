@@ -20,6 +20,7 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::post('/users-table/add',[UserController::class,'store']);
     Route::get('/users-table/edit/{id}',[UserController::class,'editView']);
     Route::put('/users-table/edit/{id}',[UserController::class,'edit'])->name('edit-user');
+    Route::get('/users-table/view/{id}',[UserController::class,'view'])->name('view-user');
 
 });
 
