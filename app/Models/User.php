@@ -30,6 +30,10 @@ class User extends Authenticatable
         'admin_id'
     ];
 
+    protected $casts = [
+        'balance' => 'decimal:2'
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
