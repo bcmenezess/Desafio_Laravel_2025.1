@@ -1,7 +1,7 @@
 <x-app-layout>
         <div class="card lg:card-side bg-base-900 shadow-sm text-black m-4">
-            <figure>
-              <img src="https://neofeed.com.br/wp-content/uploads/2020/03/harley-1.jpg"/>
+            <figure class="w-fit h-96 flex-shrink-0">
+              <img class="w-full h-full object-cover" src="https://neofeed.com.br/wp-content/uploads/2020/03/harley-1.jpg"/>
             </figure>
             <div class="card-body">
                 <h2 class="card-title">{{$product->name}}</h2>
@@ -35,6 +35,10 @@
                             </div>
                             <input type="hidden" name="product" value="{{json_encode($product)}}">
                             <button class="btn btn-success" type="submit">Comprar</button>
+
+                            @if ($errors->has('message'))
+                                <p class="text-red-500">{{ $errors->first('message') }}</p>
+                            @endif
                         </form>
                     @else
                         <p class="font-bold text-red-800">Estoque vazio!</p>
