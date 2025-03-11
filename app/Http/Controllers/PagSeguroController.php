@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\User;
@@ -39,7 +38,6 @@ class PagSeguroController extends Controller
             'items' => [$item]
         ]);
 
-
         if($response->successful()){
             Transaction::create([
                 'buyer_id' => usuarioLogado()->id,
@@ -50,8 +48,6 @@ class PagSeguroController extends Controller
                 //'reference_id' => $response['reference_id'],
                 //'status' => 1
             ]);
-
-            //TO DO VERIFICAR SALDO DO COMPRADOR
 
             $seller = User::find($product['user_id']);
             $seller->balance += $product['price'] * $quantity_input;
