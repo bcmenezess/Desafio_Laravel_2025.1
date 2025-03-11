@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('telephone');
             $table->date('date_birth');
             $table->string('cpf');
-            $table->string('photo')->nullable();
+            $table->string('photo')->nullable()->default(null);
             $table->foreignId('admin_id')->nullable()->constrained()->onDelete('no action');
             $table->rememberToken();
             $table->timestamps();

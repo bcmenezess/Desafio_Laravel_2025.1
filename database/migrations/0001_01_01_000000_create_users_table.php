@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('date_birth');
             $table->string('cpf')->unique();
             $table->decimal('balance',12,2);
-            $table->string('photo')->nullable();
+            $table->string('photo')->nullable()->default(null);
             $table->foreignId('admin_id')->constrained()->onDelete('no action');
             $table->rememberToken();
             $table->timestamps();
