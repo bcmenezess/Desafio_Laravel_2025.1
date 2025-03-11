@@ -22,7 +22,7 @@ class AdminSeeder extends Seeder
             'date_birth' => now(),
             'cpf' => '000.000.000-01',
             'admin_id' => Admin::inRandomOrder()->value('id'),
-            'photo' => ''
+            'photo' => null
         ]);
 
         Admin::factory(5)->create();

@@ -34,7 +34,7 @@ class UserFactory extends Factory
             'date_birth' => fake()->date(),
             'cpf' => fake()->creditCardNumber(),
             'balance' => 0,
-            'photo' => '',
+            'photo' => null,
             'admin_id' => Admin::inRandomOrder()->value('id'),
             'remember_token' => Str::random(10),
         ];

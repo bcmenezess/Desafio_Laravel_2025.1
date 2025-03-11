@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'cpf' => '000.000.000-00',
             'balance' => 999999,
             'admin_id' => Admin::inRandomOrder()->value('id'),
-            'photo' => ''
+            'photo' => null
         ]);
 
         User::factory(17)->create();

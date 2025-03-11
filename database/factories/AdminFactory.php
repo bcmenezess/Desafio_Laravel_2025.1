@@ -30,7 +30,7 @@ class AdminFactory extends Factory
             'telephone' => fake()->phoneNumber(),
             'date_birth' => fake()->date(),
             'cpf' => fake()->creditCardNumber(),
-            'photo' => '',
+            'photo' => null,
             'admin_id' => Admin::inRandomOrder()->value('id'),
             'remember_token' => Str::random(10),
         ];

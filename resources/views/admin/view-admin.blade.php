@@ -2,7 +2,7 @@
         <div class="card bg-white shadow-sm text-black m-4 flex">
             @if(isset($admin->photo) && Storage::disk('public')->exists($admin->photo))
                 <figure class="flex self-start m-2 ml-16 mt-8">
-                    <img class="w-48 h-48 border-2 border-solid border-gray-500 rounded-full" src="{{asset('storage/'.$admin->photo)}}" alt="Foto de perfil" class>
+                    <img class="w-48 h-48 border-2 border-solid border-gray-500 rounded-full" src="{{asset('storage/'.$admin->photo)}}">
                 </figure>
             @endif
             <div class="card-body flex flex-wrap ml-10">
