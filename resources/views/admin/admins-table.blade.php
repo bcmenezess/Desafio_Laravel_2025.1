@@ -31,19 +31,16 @@
                     <td>{{$admin->email}}</td>
                     <td>{{$admin->cpf}}</td>
                     <td>{{$admin->telephone}}</td>
-                    @if($admin->admin_id == usuarioLogado()->id || $admin == usuarioLogado())
                     <td class="flex gap-2">
-                        <a href="admins-table/view/{{$admin->id}}" class="btn btn-soft bg-gray-200 text-black">Ver</a>
+                      <a href="admins-table/view/{{$admin->id}}" class="btn btn-soft bg-gray-200 text-black">Ver</a>
+                      @if($admin->admin_id == usuarioLogado()->id || $admin == usuarioLogado())
                         <a href="admins-table/edit/{{$admin->id}}" class="btn btn-warning">Editar</a>
                         <a href="admins-table/delete/{{$admin->id}}" class="btn btn-error">Deletar</a>
-                    </td>
-                    @else
-                      <td class="flex gap-2">
-                        <button disabled class="btn btn-soft bg-gray-200">Ver</button>
+                      @else
                         <button disabled class="btn btn-warning">Editar</button>
                         <button disabled class="btn btn-error">Deletar</button>
-                      </td>
-                    @endif
+                      @endif
+                    </td>
                     </tr>
                 @endforeach
               </tbody>
