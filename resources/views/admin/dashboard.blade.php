@@ -8,7 +8,7 @@
     <div class="flex justify-center items-center mt-[100px]">
         <div class="join join-vertical gap-4">
             <a class="btn p-8 text-lg join-item" href="users-table">Gerenciamento de usuários</a>
-            <a class="btn p-8 text-lg join-item" href="">Gerenciamento de administradores</a>
+            <a class="btn p-8 text-lg join-item" href="admins-table">Gerenciamento de administradores</a>
             <a class="btn p-8 text-lg join-item" href="">Gerenciamento de produtos</a>
         </div>
     </div>
