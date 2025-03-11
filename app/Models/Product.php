@@ -13,6 +13,7 @@ class Product extends Model
         'quantity',
         'description',
         'category',
+        'photo',
         'user_id'
     ];
     /** @use HasFactory<\Database\Factories\ProductFactory> */
