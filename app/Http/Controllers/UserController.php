@@ -6,10 +6,12 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Product;
 use App\Models\User;
+use Brick\Math\BigDecimal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+
 
 class UserController extends Controller
 {
@@ -121,5 +123,28 @@ class UserController extends Controller
         $user->delete();
 
         return to_route('users-table');
+    }
+
+    public function viewWithdraw(){
+        $user = usuarioLogado();
+
+        return view('user.withdraw',compact('user'));
+    }
+
+    public function withdraw(Request $request){
+        $user = User::find(usuarioLogado()->id);
+
+        $value = (float) $request->withdraw;
+
+        $balance = $user->balance;
+
+        if($balance >= $value){
+            $newBalance = $balance - $value;
+            $user->update(['balance' => $newBalance]);
+
+            return to_route('withdraw')->with(['message'=>'Saque feito com sucesso']);
+        }
+
+        return to_route('withdraw')->with(['error'=>'Erro ao realizar saque']);
     }
 }
