@@ -13,7 +13,7 @@
                     <p class="font-bold">Contato:</p>
                     <p>{{$seller->telephone}}</p>
                 </div>
-                <p class="text-lg font-bold text-green-600">R${{$product->price}}</p>
+                <p class="text-lg font-bold text-green-600">{{'R$ ' . number_format($product->price,'2',',','.')}}</p>
                 <div>
                     <p class="font-bold">Em estoque:</p>
                     <p>{{$product->quantity}}</p>
@@ -26,7 +26,9 @@
                 <div class="card-actions justify-end">
                     @if (isAdmin())
                         <p class="font-bold text-red-800">Sua conta não tem permissão para fazer compras</p>
-                    @elseif (isUser() && $product->quantity > 0)
+                    @elseif($product->user_id == usuarioLogado()->id)
+                        <p class="font-bold text-red-800">Você não pode comprar um produto anunciado pela sua conta</p>
+                    @elseif (isUser() && ($product->quantity > 0))
                         <form action="{{route('checkout')}}" method="post" class="flex flex-col gap-2">
                             @csrf
                             <div class="flex flex-col">
