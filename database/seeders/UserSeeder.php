@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'telephone' => '4002-8922',
             'date_birth' => now(),
             'cpf' => '000.000.000-00',
-            'balance' => 0,
+            'balance' => 999999,
             'admin_id' => Admin::inRandomOrder()->value('id'),
             'photo' => ''
         ]);
