@@ -13,7 +13,7 @@
                     <div>
                         <label for="withdraw">Valor a ser sacado:</label>
                         <input name="withdraw" type="text" pattern="^\d+(\.\d{1,2})?$" class="input" required>
-                        <span class="flex m-2 text-gray-400">OBS: Escreva o valor a ser sacado e separe apenas os decimais com ponto. Não use vírgulas.</span>
+                        <span class="flex m-2 text-gray-400">OBS: Escreva o valor a ser sacado e separe apenas os decimais com ponto. Não use vírgulas. (Ex: 1099.90)</span>
                     </div>
                     <div class="flex flex-row justify-center gap-4">
                         <button class="btn bg-gray-200 text-black mt-8" type="submit">Sacar</button>
