@@ -37,21 +37,23 @@
         @endif
 
         @foreach ($products as $product)
-        <div class="card image-full bg-base-100 w-48 h-60 shadow-sm m-4">
-            <figure>
-              <img
-                src="https://neofeed.com.br/wp-content/uploads/2020/03/harley-1.jpg"/>
-            </figure>
-            <div class="card-body">
-              <h2 class="card-title">{{$product->name}}</h2>
-              <p>R${{$product->price}}</p>
-                <div class="card-actions justify-end">
-                    @if(isUser())
-                    <a class="btn btn-outline btn-success" href="item/{{$product->id}}">Comprar</a>
-                    @endif
+          @if ($product->user_id != usuarioLogado()->id || isAdmin())
+            <div class="card image-full bg-base-100 w-48 h-60 shadow-sm m-4">
+                <figure>
+                  <img
+                    src="https://neofeed.com.br/wp-content/uploads/2020/03/harley-1.jpg"/>
+                </figure>
+                <div class="card-body">
+                  <h2 class="card-title">{{$product->name}}</h2>
+                  <p>{{"R$ " . number_format($product->price,'2',',','.')}}</p>
+                    <div class="card-actions justify-end">
+                        @if(isUser())
+                        <a class="btn btn-outline btn-success" href="item/{{$product->id}}">Comprar</a>
+                        @endif
+                    </div>
                 </div>
-            </div>
-          </div>
+              </div>
+          @endif
         @endforeach
     </div>
 
