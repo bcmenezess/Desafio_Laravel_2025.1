@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('telephone')->unique();
             $table->date('date_birth');
             $table->string('cpf')->unique();
-            $table->decimal('balance',10,2);
+            $table->decimal('balance',12,2);
             $table->string('photo')->nullable();
             $table->foreignId('admin_id')->constrained()->onDelete('no action');
             $table->rememberToken();
