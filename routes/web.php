@@ -28,9 +28,13 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
 
 Route::prefix('user')->middleware(UserMiddleware::class)->group(function (){
     Route::post('/checkout',[PagSeguroController::class,'createCheckout'])->name('checkout');
+
     Route::get('/erro-checkout',function(){
         return view('user.erro-checkout');
     })->name('erro-checkout');
+
+    Route::get('/withdraw', [UserController::class,'viewWithdraw'])->name('withdraw');
+    Route::put('/withdraw', [UserController::class,'withdraw']);
 
 });
 
