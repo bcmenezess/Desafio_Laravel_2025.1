@@ -12,12 +12,17 @@ use Illuminate\Support\Facades\Http;
 class PagSeguroController extends Controller
 {
     public function createCheckout(Request $request){
+        $buyer = usuarioLogado();
+
         $url = config('services.pagseguro.checkout_url');
         $token = config('services.pagseguro.token');
 
         $product = json_decode($request->product,true);
         $quantity_input = $request->quantity_input;
 
+        if($buyer->balance < $product['price'] * $quantity_input){
+            return back()->withErrors(['message' => 'Saldo insuficiente']);
+        }
 
         $item =[
             'name' => $product['name'],
@@ -51,6 +56,10 @@ class PagSeguroController extends Controller
             $seller = User::find($product['user_id']);
             $seller->balance += $product['price'] * $quantity_input;
             $seller->update(['balance'=>$seller->balance]);
+
+            $buyer = User::find(usuarioLogado()->id);
+            $buyer->balance -= $product['price'] * $quantity_input;
+            $buyer->update(['balance'=>$buyer->balance]);
 
             $query_product = Product::find($product['id']);
             $query_product->quantity -= $quantity_input;
