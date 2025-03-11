@@ -1,11 +1,7 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Landing page') }}
-        </h2>
-    </x-slot>
 
-    <div class="hero bg-base-200 min-h-screen">
+
+    <div class="hero bg-base-200 h-full p-20">
         <div class="hero-content text-center">
           <div class="max-w-md">
             <h1 class="text-5xl font-bold">Bem vindo ao Ecommerce, {{$user->name}}!</h1>
