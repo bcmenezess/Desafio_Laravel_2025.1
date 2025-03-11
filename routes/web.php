@@ -34,6 +34,14 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::get('/admins-table/view/{id}',[AdminController::class,'view'])->name('view-admin');
     Route::get('/admins-table/delete/{id}',[AdminController::class,'deleteView'])->name('delete-admin');
     Route::delete('/admins-table/delete/{id}',[AdminController::class,'delete']);
+
+    Route::get('/products-table',[ProductController::class,'table'])->name('products-table');
+    Route::get('/products-table/add',[ProductController::class,'create'])->name('add-product');
+    Route::post('/products-table/add',[ProductController::class,'store']);
+    Route::get('/products-table/edit/{id}',[ProductController::class,'editView']);
+    Route::put('/products-table/edit/{id}',[ProductController::class,'edit'])->name('edit-product');
+    Route::get('/products-table/delete/{id}',[ProductController::class,'deleteView'])->name('delete-product');
+    Route::delete('/products-table/delete/{id}',[ProductController::class,'delete']);
 });
 
 Route::prefix('user')->middleware(UserMiddleware::class)->group(function (){
