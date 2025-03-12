@@ -62,7 +62,12 @@ class ProductController extends Controller
      */
 
      public function table(){
-        $products = Product::paginate(6);
+        if(isAdmin())
+            $products = Product::paginate(6);
+
+        if(isUser())
+            $products = Product::where('user_id','=',usuarioLogado()->id)->paginate(6);
+
         return view('admin.products-table',compact('products'));
      }
 
