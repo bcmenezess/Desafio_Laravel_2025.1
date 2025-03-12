@@ -15,6 +15,13 @@
                 </div>
 
                 @if(isUser())
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('products-table')" :active="request()->routeIs('products-table')">
+                            {{ __('Gerenciamento de Produtos') }}
+                        </x-nav-link>
+                    </div>
+
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('withdraw')" :active="request()->routeIs('withdraw')">
                             {{ __('Saque') }}
