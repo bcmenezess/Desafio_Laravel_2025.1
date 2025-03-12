@@ -18,11 +18,11 @@
                   <th>Em estoque</th>
                   <th>Criador do anúncio</th>
                   <th>Ações</th>
-                  {{-- @if (isUser()) --}}
-                  <th>
-                    <a href="products-table/add" class="btn btn-success text-lg font-black">+</a>
-                  </th>
-                  {{-- @endif --}}
+                  @if (isUser())
+                    <th>
+                      <a href="products-table/add" class="btn btn-success text-lg font-black">+</a>
+                    </th>
+                  @endif
                 </tr>
               </thead>
               <tbody>
