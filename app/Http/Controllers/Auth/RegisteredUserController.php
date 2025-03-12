@@ -32,19 +32,36 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'cpf' => 'required|string|size:11|unique:users,cpf',
+            'address' => 'required|string|max:255',
+            'date_birth' => 'required|date|before:today',
+            'telephone' => 'required|string|min:6|max:15',
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        if ($request->hasFile('photo')) {
+            $imagePath = $request->file('photo')->store('profiles', 'public');
+        } else {
+            $imagePath = null;
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'cpf' => $request->cpf,
+            'address' => $request->address,
+            'date_birth' => $request->date_birth,
+            'telephone' => $request->telephone,
+            'photo' => $imagePath,
             'password' => Hash::make($request->password),
+            'balance' => 0
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('landing-page', absolute: false));
     }
 }

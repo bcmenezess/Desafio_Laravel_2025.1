@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -26,13 +30,39 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if(isAdmin()){
+            $user = Admin::find(usuarioLogado()->id);
+        }
+        else{
+            $user = User::find(usuarioLogado()->id);
         }
 
-        $request->user()->save();
+        $validatedData = $request->validated();
+
+        if ($request->hasFile('photo')) {
+            if ($user->photo) {
+                Storage::disk('public')->delete($user->photo);
+            }
+
+            $imagePath = $request->file('photo')->store('profiles', 'public');
+
+            $validatedData['photo'] = $imagePath;
+        }
+
+
+        if ($request->email != $user->email) {
+            $user->email_verified_at = null;
+        }
+
+        $user->update([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'telephone' => $validatedData['telephone'],
+            'address' => $validatedData['address'],
+            'CPF' => $validatedData['cpf'],
+            'date_birth' => $validatedData['date_birth'],
+            'photo' => $validatedData['photo']
+        ]);
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
@@ -42,11 +72,18 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
+        if(isAdmin()){
+            $user = Admin::find(usuarioLogado()->id);
+        }
+        else{
+            $user = User::find(usuarioLogado()->id);
+        }
 
-        $user = $request->user();
+        if(!Hash::check($request->password, $user->password)){
+            $request->validateWithBag('userDeletion', [
+                'password' => false,
+            ]);
+        }
 
         Auth::logout();
 
