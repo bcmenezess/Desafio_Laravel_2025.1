@@ -35,13 +35,6 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::get('/admins-table/delete/{id}',[AdminController::class,'deleteView'])->name('delete-admin');
     Route::delete('/admins-table/delete/{id}',[AdminController::class,'delete']);
 
-    Route::get('/products-table',[ProductController::class,'table'])->name('products-table');
-    Route::get('/products-table/add',[ProductController::class,'create'])->name('add-product');
-    Route::post('/products-table/add',[ProductController::class,'store']);
-    Route::get('/products-table/edit/{id}',[ProductController::class,'editView']);
-    Route::put('/products-table/edit/{id}',[ProductController::class,'edit'])->name('edit-product');
-    Route::get('/products-table/delete/{id}',[ProductController::class,'deleteView'])->name('delete-product');
-    Route::delete('/products-table/delete/{id}',[ProductController::class,'delete']);
 });
 
 Route::prefix('user')->middleware(UserMiddleware::class)->group(function (){
@@ -56,7 +49,6 @@ Route::prefix('user')->middleware(UserMiddleware::class)->group(function (){
 
 });
 
-//Route::post('/landing-page', [ProductController::class, 'index']);
 
 Route::middleware(AuthOrAdminMiddleware::class)->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -65,6 +57,14 @@ Route::middleware(AuthOrAdminMiddleware::class)->group(function () {
 
     Route::get('/landing-page',[ProductController::class,'index'])->name('landing-page');
     Route::get('/item/{id}',[ProductController::class,'visuProdutos'])->name('item-view');
+
+    Route::get('/products-table',[ProductController::class,'table'])->name('products-table');
+    Route::get('/products-table/add',[ProductController::class,'create'])->name('add-product');
+    Route::post('/products-table/add',[ProductController::class,'store']);
+    Route::get('/products-table/edit/{id}',[ProductController::class,'editView']);
+    Route::put('/products-table/edit/{id}',[ProductController::class,'edit'])->name('edit-product');
+    Route::get('/products-table/delete/{id}',[ProductController::class,'deleteView'])->name('delete-product');
+    Route::delete('/products-table/delete/{id}',[ProductController::class,'delete']);
 });
 
 require __DIR__.'/auth.php';
