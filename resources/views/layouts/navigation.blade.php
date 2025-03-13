@@ -22,6 +22,19 @@
                         </x-nav-link>
                     </div>
 
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('purchases')" :active="request()->routeIs('purchases')">
+                            {{ __('Histórico de compras') }}
+                        </x-nav-link>
+                    </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('sales')" :active="request()->routeIs('sales')">
+                            {{ __('Histórico de vendas') }}
+                        </x-nav-link>
+                    </div>
+
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('withdraw')" :active="request()->routeIs('withdraw')">
                             {{ __('Saque') }}
