@@ -10,6 +10,7 @@
             <a class="btn p-8 text-lg join-item" href="{{route('users-table')}}">Gerenciamento de usuários</a>
             <a class="btn p-8 text-lg join-item" href="{{route('admins-table')}}">Gerenciamento de administradores</a>
             <a class="btn p-8 text-lg join-item" href="{{route('products-table')}}">Gerenciamento de produtos</a>
+            <a class="btn p-8 text-lg join-item" href="{{route('sales')}}">Histórico de vendas</a>
         </div>
     </div>
 </x-app-layout>
