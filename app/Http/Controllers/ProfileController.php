@@ -85,6 +85,10 @@ class ProfileController extends Controller
             ]);
         }
 
+        if(isset($user->photo)){
+            Storage::disk('public')->delete($user->photo);
+        }
+
         Auth::logout();
 
         $user->delete();
