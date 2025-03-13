@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PagSeguroController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AuthOrAdminMiddleware;
@@ -47,6 +48,8 @@ Route::prefix('user')->middleware(UserMiddleware::class)->group(function (){
     Route::get('/withdraw', [UserController::class,'viewWithdraw'])->name('withdraw');
     Route::put('/withdraw', [UserController::class,'withdraw']);
 
+    Route::get('/purchase-history',[TransactionController::class,'purchasesIndex'])->name('purchases');
+    Route::post('/purchase-history',[TransactionController::class,'purchasesHistory']);
 });
 
 
@@ -65,6 +68,9 @@ Route::middleware(AuthOrAdminMiddleware::class)->group(function () {
     Route::put('/products-table/edit/{id}',[ProductController::class,'edit'])->name('edit-product');
     Route::get('/products-table/delete/{id}',[ProductController::class,'deleteView'])->name('delete-product');
     Route::delete('/products-table/delete/{id}',[ProductController::class,'delete']);
+
+    Route::get('/sales-history',[TransactionController::class,'salesIndex'])->name('sales');
+    Route::post('/sales-history',[TransactionController::class,'salesHistory']);
 });
 
 require __DIR__.'/auth.php';
