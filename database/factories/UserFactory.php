@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
@@ -34,7 +35,7 @@ class UserFactory extends Factory
             'date_birth' => fake()->date(),
             'cpf' => fake()->randomFloat(0,10000000000,99999999999),
             'balance' => fake()->randomFloat(2,0,30000),
-            'photo' => "https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png",
+            'photo' => 'profiles\avatar-default.png',
             'admin_id' => Admin::inRandomOrder()->value('id'),
             'remember_token' => Str::random(10),
         ];

@@ -30,7 +30,7 @@ class AdminFactory extends Factory
             'telephone' => fake()->phoneNumber(),
             'date_birth' => fake()->date(),
             'cpf' => fake()->randomFloat(0,10000000000,99999999999),
-            'photo' => "https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png",
+            'photo' => 'profiles\avatar-default.png',
             'admin_id' => Admin::inRandomOrder()->value('id'),
             'remember_token' => Str::random(10),
         ];

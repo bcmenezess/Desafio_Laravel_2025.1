@@ -20,11 +20,11 @@ class UserSeeder extends Seeder
             'password' => 'usuario',
             'address' => 'rua dos bobos, 10',
             'telephone' => '4002-8922',
-            'date_birth' => now(),
-            'cpf' => '000.000.000-00',
+            'date_birth' => fake()->date(),
+            'cpf' => '00000000000',
             'balance' => 999999,
             'admin_id' => Admin::inRandomOrder()->value('id'),
-            'photo' => null
+            'photo' => 'profiles\avatar-default.png'
         ]);
 
         User::factory(17)->create();

@@ -19,10 +19,10 @@ class AdminSeeder extends Seeder
             'password' => 'admin',
             'address' => 'rua dos bobos, 20',
             'telephone' => '190',
-            'date_birth' => now(),
-            'cpf' => '000.000.000-01',
+            'date_birth' => fake()->date(),
+            'cpf' => '00000000001',
             'admin_id' => Admin::inRandomOrder()->value('id'),
-            'photo' => null
+            'photo' => 'profiles\avatar-default.png'
         ]);
 
         Admin::factory(5)->create();
