@@ -35,7 +35,7 @@
 
                     <tr>
                     <th>
-                        <img class="w-40 h-auto" src="https://neofeed.com.br/wp-content/uploads/2020/03/harley-1.jpg" alt="">
+                        <img class="w-40 h-auto" src="{{App\Models\Product::find($transaction->product_id)->photo}}" alt="">
                     </th>
                     <td>{{App\Models\Product::find($transaction->product_id)->name}}</td>
                     <td>{{$transaction->quantity}}</td>
