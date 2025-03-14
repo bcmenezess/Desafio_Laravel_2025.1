@@ -45,8 +45,6 @@ class PagSeguroController extends Controller
                 'total_price' => $product['price'] * $quantity_input,
                 'quantity' => $quantity_input,
                 'date' => now()
-                //'reference_id' => $response['reference_id'],
-                //'status' => 1
             ]);
 
             $seller = User::find($product['user_id']);
