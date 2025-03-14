@@ -35,6 +35,7 @@
                         <a href="users-table/view/{{$user->id}}" class="btn btn-soft bg-gray-200 text-black">Ver</a>
                         <a href="users-table/edit/{{$user->id}}" class="btn btn-warning">Editar</a>
                         <a href="users-table/delete/{{$user->id}}" class="btn btn-error">Deletar</a>
+                        <a href="contact/{{$user->id}}" class="btn btn-info">Email</a>
                     </td>
                     </tr>
                 @endforeach
