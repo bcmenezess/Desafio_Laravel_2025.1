@@ -40,7 +40,7 @@ class AdminController extends Controller
         if ($request->hasFile('photo')) {
             $imagePath = $request->file('photo')->store('profiles', 'public');
         } else {
-            $imagePath = null;
+            $imagePath = 'profiles\avatar-default.png';
         }
 
         $admin = Admin::create([
@@ -72,10 +72,6 @@ class AdminController extends Controller
         $admin = Admin::find($id);
 
         if ($request->hasFile('photo')) {
-            if ($admin->photo) {
-                Storage::disk('public')->delete($admin->photo);
-            }
-
             $imagePath = $request->file('photo')->store('profiles', 'public');
 
             $admin->photo = $imagePath;
@@ -92,7 +88,7 @@ class AdminController extends Controller
             'address' => $validatedData['address'],
             'date_birth' => $validatedData['date_birth'],
             'telephone' => $validatedData['telephone'],
-            'photo' => isset($imagePath) ? $imagePath : null
+            'photo' => isset($imagePath) ? $imagePath : $admin->photo,
         ]);
 
         if($admin){
@@ -114,10 +110,6 @@ class AdminController extends Controller
 
     public function delete($id){
         $admin = Admin::find($id);
-
-        if(isset($admin->photo)){
-            Storage::disk('public')->delete($admin->photo);
-        }
 
         if(usuarioLogado() == $admin){
             Auth::logout();

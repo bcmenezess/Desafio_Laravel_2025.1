@@ -42,10 +42,6 @@ class ProfileController extends Controller
 
 
         if ($request->hasFile('photo')) {
-            if ($user->photo) {
-                Storage::disk('public')->delete($user->photo);
-            }
-
             $imagePath = $request->file('photo')->store('profiles', 'public');
 
             $validatedData['photo'] = $imagePath;

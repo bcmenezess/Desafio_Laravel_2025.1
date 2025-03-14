@@ -83,7 +83,7 @@ class ProductController extends Controller
         if ($request->hasFile('photo')) {
             $imagePath = $request->file('photo')->store('products', 'public');
         } else {
-            $imagePath = null;
+            $imagePath = 'products\product-default.png';
         }
 
         $product = Product::create([
@@ -113,10 +113,6 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         if ($request->hasFile('photo')) {
-            if ($product->photo) {
-                Storage::disk('public')->delete($product->photo);
-            }
-
             $imagePath = $request->file('photo')->store('products', 'public');
 
             $product->photo = $imagePath;
@@ -128,7 +124,7 @@ class ProductController extends Controller
             'description' => $validatedData['description'],
             'category' => $validatedData['category'],
             'quantity' => $validatedData['quantity'],
-            'photo' => isset($imagePath) ? $imagePath : null,
+            'photo' => isset($imagePath) ? $imagePath : $product->photo,
         ]);
 
         if($product){
@@ -145,10 +141,6 @@ class ProductController extends Controller
 
     public function delete($id){
         $product = Product::find($id);
-
-        if(isset($product->photo)){
-            Storage::disk('public')->delete($product->photo);
-        }
 
         $product->delete();
 

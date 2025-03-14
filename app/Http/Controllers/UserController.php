@@ -37,7 +37,7 @@ class UserController extends Controller
         if ($request->hasFile('photo')) {
             $imagePath = $request->file('photo')->store('profiles', 'public');
         } else {
-            $imagePath = null;
+            $imagePath = 'profiles\avatar-default.png';
         }
 
         $user = User::create([
@@ -70,10 +70,6 @@ class UserController extends Controller
         $user = User::find($id);
 
         if ($request->hasFile('photo')) {
-            if ($user->photo) {
-                Storage::disk('public')->delete($user->photo);
-            }
-
             $imagePath = $request->file('photo')->store('profiles', 'public');
 
             $user->photo = $imagePath;
@@ -90,7 +86,7 @@ class UserController extends Controller
             'address' => $validatedData['address'],
             'date_birth' => $validatedData['date_birth'],
             'telephone' => $validatedData['telephone'],
-            'photo' => isset($imagePath) ? $imagePath : null
+            'photo' => isset($imagePath) ? $imagePath : $user->photo
         ]);
 
         if($user){
@@ -112,10 +108,6 @@ class UserController extends Controller
 
     public function delete($id){
         $user = User::find($id);
-
-        if(isset($user->photo)){
-            Storage::disk('public')->delete($user->photo);
-        }
 
         if(usuarioLogado() == $user){
             Auth::logout();
