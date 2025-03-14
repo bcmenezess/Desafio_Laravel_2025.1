@@ -38,6 +38,8 @@ class ProfileController extends Controller
         }
 
         $validatedData = $request->validated();
+        $validatedData['photo'] = $user->photo;
+
 
         if ($request->hasFile('photo')) {
             if ($user->photo) {

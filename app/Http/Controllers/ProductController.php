@@ -128,7 +128,7 @@ class ProductController extends Controller
             'description' => $validatedData['description'],
             'category' => $validatedData['category'],
             'quantity' => $validatedData['quantity'],
-            'photo' => $imagePath,
+            'photo' => isset($imagePath) ? $imagePath : null,
         ]);
 
         if($product){

@@ -92,6 +92,7 @@ class AdminController extends Controller
             'address' => $validatedData['address'],
             'date_birth' => $validatedData['date_birth'],
             'telephone' => $validatedData['telephone'],
+            'photo' => isset($imagePath) ? $imagePath : null
         ]);
 
         if($admin){
