@@ -19,11 +19,11 @@
                     <input name="price" placeholder="Preço" type="text" pattern="^\d+(\.\d{1,2})?$" class="input" required>
                     <span class="flex m-2 text-gray-400">OBS: Escreva o preço do produto e separe somente os decimais usando ponto. Não use vírgulas.</span>
                     <input type="number" name="quantity" placeholder="Quantidade" class="input" required/>
-                    <input type="text" name="description" placeholder="Descrição" class="input" required/>
+                    <textarea type="text" name="description" placeholder="Descrição" class="textarea" required></textarea>
                     <input type="text" name="category" placeholder="Categoria" class="input" required/>
                     <fieldset class="fieldset">
                         <legend class="fieldset-legend">Imagem do produto</legend>
-                        <input type="file" class="file-input" name='photo'/>
+                        <input type="file" class="file-input" name='photo' required/>
                         <label class="fieldset-label">Max size 2MB</label>
                     </fieldset>
                     <button class="btn btn-success" type="submit">Criar</button>

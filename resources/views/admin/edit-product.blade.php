@@ -20,7 +20,7 @@
                     <input name="price" value="{{$product->price}}" placeholder="Preço" type="text" pattern="^\d+(\.\d{1,2})?$" class="input" required>
                     <span class="flex m-2 text-gray-400">OBS: Escreva o preço do produto e separe somente os decimais usando ponto. Não use vírgulas. (Ex: 1099.90)</span>
                     <input type="number" value="{{$product->quantity}}" name="quantity" placeholder="Quantidade" class="input" required/>
-                    <input type="text" value="{{$product->description}}" name="description" placeholder="Descrição" class="input" required/>
+                    <textarea type="text" name="description" placeholder="Descrição" class="textarea" required>{{$product->description}}</textarea>
                     <input type="text" value="{{$product->category}}" name="category" placeholder="Categoria" class="input" required/>
                     <fieldset class="fieldset">
                         <legend class="fieldset-legend">Imagem do produto</legend>

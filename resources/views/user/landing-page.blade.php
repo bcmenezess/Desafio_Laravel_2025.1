@@ -39,9 +39,10 @@
         @foreach ($products as $product)
           @if ($product->user_id != usuarioLogado()->id || isAdmin())
             <div class="card image-full bg-base-100 w-48 h-60 shadow-sm m-4">
+              @if(Storage::disk('public')->exists($product->photo))
                 <figure>
                   <img
-                    src="https://neofeed.com.br/wp-content/uploads/2020/03/harley-1.jpg"/>
+                    src="{{asset('storage/'.$product->photo)}}"/>
                 </figure>
                 <div class="card-body">
                   <h2 class="card-title">{{$product->name}}</h2>
