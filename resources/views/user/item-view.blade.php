@@ -1,8 +1,10 @@
 <x-app-layout>
         <div class="card lg:card-side bg-base-900 shadow-sm text-black m-4">
+            @if(Storage::disk('public')->exists($product->photo))
             <figure class="w-fit h-96 flex-shrink-0">
-              <img class="w-full h-full object-cover" src="https://neofeed.com.br/wp-content/uploads/2020/03/harley-1.jpg"/>
+              <img class="w-full h-full object-cover" src="{{asset('storage/' . $product->photo)}}"/>
             </figure>
+            @endif
             <div class="card-body">
                 <h2 class="card-title">{{$product->name}}</h2>
                 <div>

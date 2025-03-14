@@ -22,7 +22,7 @@
 
         @if(isset($user->photo) && Storage::disk('public')->exists($user->photo))
             <figure class="flex justify-center items-center flex-col">
-                <span class="fieldset-legend">Foto de perfil atual</span>
+                <span class="fieldset-legend text-black">Foto de perfil atual</span>
                 <img class="w-60 h-auto border-4 border-double border-white" src="{{asset('storage/'.$user->photo)}}" alt="Foto de perfil" class>
             </figure>
         @else

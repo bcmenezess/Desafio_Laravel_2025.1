@@ -44,6 +44,7 @@
                   <img
                     src="{{asset('storage/'.$product->photo)}}"/>
                 </figure>
+              @endif
                 <div class="card-body">
                   <h2 class="card-title">{{$product->name}}</h2>
                   <p>{{"R$ " . number_format($product->price,'2',',','.')}}</p>
