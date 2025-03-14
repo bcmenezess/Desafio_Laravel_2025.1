@@ -23,6 +23,7 @@ class ProductFactory extends Factory
             'quantity' => fake()->randomNumber(2,false),
             'description' => fake()->text(),
             'category' => fake()->randomDigit(),
+            'photo' => "https://neofeed.com.br/wp-content/uploads/2020/03/harley-1.jpg",
             'user_id' => User::inRandomOrder()->value('id')
         ];
     }

@@ -32,9 +32,9 @@ class UserFactory extends Factory
             'address' => fake()->address(),
             'telephone' => fake()->phoneNumber(),
             'date_birth' => fake()->date(),
-            'cpf' => fake()->creditCardNumber(),
-            'balance' => 0,
-            'photo' => null,
+            'cpf' => fake()->randomFloat(0,10000000000,99999999999),
+            'balance' => fake()->randomFloat(2,0,30000),
+            'photo' => "https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png",
             'admin_id' => Admin::inRandomOrder()->value('id'),
             'remember_token' => Str::random(10),
         ];
