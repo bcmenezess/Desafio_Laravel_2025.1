@@ -11,14 +11,14 @@ class UserController extends Controller
 {
     public function index(){
 
-        if(!isset($_GET['id'])){
+        if(!isset($_GET['page'])){
             return response()->json([
-                'message' => 'Requisição não foi completada. ID não definido',
+                'message' => 'Requisição não foi completada. Param. page não definido',
                 'status' => 400
             ]);
         }
 
-        $page = $_GET['id'];
+        $page = $_GET['page'];
         $skip = ($page-1) * 6;
         $totalPages = ceil(User::count()/6);
 
