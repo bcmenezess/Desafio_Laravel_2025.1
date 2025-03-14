@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PagSeguroController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -35,6 +36,10 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::get('/admins-table/view/{id}',[AdminController::class,'view'])->name('view-admin');
     Route::get('/admins-table/delete/{id}',[AdminController::class,'deleteView'])->name('delete-admin');
     Route::delete('/admins-table/delete/{id}',[AdminController::class,'delete']);
+
+    Route::get('/contact/{id}',[ContactController::class,'index'])->name('contact');
+    Route::post('/contact/{id}',[ContactController::class,'store']);
+
 
 });
 
